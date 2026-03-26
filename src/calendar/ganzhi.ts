@@ -194,35 +194,37 @@ export function getMonthGanZhi(year: number, month: number, day: number): GanZhi
  */
 function getMonthZhiBySolarTerm(year: number, month: number, day: number): Zhi {
   // 节气大概日期（简化版）
-  // 正月立春（2月4日），二月惊蛰（3月6日），三月清明（4月5日）
-  // 四月立夏（5月6日），五月芒种（6月6日），六月小暑（7月7日）
-  // 七月立秋（8月8日），八月白露（9月8日），九月寒露（10月9日）
-  // 十月立冬（11月7日），十一月大雪（12月7日），十二月小寒（1月6日）
+  // 十二月小寒（1月6日），正月立春（2月4日），二月惊蛰（3月6日）
+  // 三月清明（4月5日），四月立夏（5月6日），五月芒种（6月6日）
+  // 六月小暑（7月7日），七月立秋（8月8日），八月白露（9月8日）
+  // 九月寒露（10月9日），十月立冬（11月7日），十一月大雪（12月7日）
 
   const solarTerms = [
-    { month: 2, day: 4, zhi: '寅' as Zhi },   // 立春
-    { month: 3, day: 6, zhi: '卯' as Zhi },   // 惊蛰
-    { month: 4, day: 5, zhi: '辰' as Zhi },   // 清明
-    { month: 5, day: 6, zhi: '巳' as Zhi },   // 立夏
-    { month: 6, day: 6, zhi: '午' as Zhi },   // 芒种
-    { month: 7, day: 7, zhi: '未' as Zhi },   // 小暑
-    { month: 8, day: 8, zhi: '申' as Zhi },   // 立秋
-    { month: 9, day: 8, zhi: '酉' as Zhi },   // 白露
-    { month: 10, day: 9, zhi: '戌' as Zhi },  // 寒露
-    { month: 11, day: 7, zhi: '亥' as Zhi },  // 立冬
-    { month: 12, day: 7, zhi: '子' as Zhi }, // 大雪
-    { month: 1, day: 6, zhi: '丑' as Zhi },   // 小寒
+    { month: 1, day: 6, zhi: '丑' as Zhi },   // 小寒 - 十二月
+    { month: 2, day: 4, zhi: '寅' as Zhi },   // 立春 - 正月
+    { month: 3, day: 6, zhi: '卯' as Zhi },   // 惊蛰 - 二月
+    { month: 4, day: 5, zhi: '辰' as Zhi },   // 清明 - 三月
+    { month: 5, day: 6, zhi: '巳' as Zhi },   // 立夏 - 四月
+    { month: 6, day: 6, zhi: '午' as Zhi },   // 芒种 - 五月
+    { month: 7, day: 7, zhi: '未' as Zhi },   // 小暑 - 六月
+    { month: 8, day: 8, zhi: '申' as Zhi },   // 立秋 - 七月
+    { month: 9, day: 8, zhi: '酉' as Zhi },   // 白露 - 八月
+    { month: 10, day: 9, zhi: '戌' as Zhi },  // 寒露 - 九月
+    { month: 11, day: 7, zhi: '亥' as Zhi },  // 立冬 - 十月
+    { month: 12, day: 7, zhi: '子' as Zhi },  // 大雪 - 十一月
   ];
 
   // 找到对应的月支
+  // 从后往前找，找到第一个满足条件的节气（即当前日期在该节气之后或当天）
   for (let i = solarTerms.length - 1; i >= 0; i--) {
     const term = solarTerms[i];
+    // 当前日期在节气之后或当天
     if (month > term.month || (month === term.month && day >= term.day)) {
       return term.zhi;
     }
   }
 
-  // 如果在1月6日之前，属于上年的丑月
+  // 如果在1月6日之前，属于上一年的丑月（十二月）
   return '丑' as Zhi;
 }
 
