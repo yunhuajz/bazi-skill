@@ -45,5 +45,8 @@
         "statements": 80
       }
     }
+  },
+  "dependencies": {
+    "lunar-javascript": "^1.7.7"
   }
 }
