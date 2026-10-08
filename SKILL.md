@@ -53,14 +53,15 @@ description: 传统八字命理与时家奇门遁甲智能推演技能。涵盖�
 
 ```bash
 # 1. 四柱八字排盘 (指定公历时间、性别、城市)
-python scripts/bazi_engine.py --bazi "2003-11-04 10:40:34" --gender male --city "临朐"
+python scripts/bazi_engine.py --bazi "1990-05-20 14:30:00" --gender male --city "北京"
 
 # 2. 时家奇门遁甲起局 (指定时间或当前时间)
-python scripts/bazi_engine.py --qimen "2026-09-29 13:26:00"
+python scripts/bazi_engine.py --qimen "2026-10-05 17:36:00"
 python scripts/bazi_engine.py --qimen now
 
 # 3. 地理方位与距离测算 (两城市直线距离与方位角)
-python scripts/bazi_engine.py --bearing "临朐" "济南"
+python scripts/bazi_engine.py --bearing "北京" "上海"
+
 ```
 
 ---
